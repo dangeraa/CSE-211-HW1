@@ -1,6 +1,14 @@
+package turtle;
 
 /* Copyright (c) 2007-2014 MIT 6.005 course staff, all rights reserved.
  * Redistribution of original or derived work requires permission of course staff.
+ */
+
+/*
+ * Abby Danger, Scott Cogan, Andrew Grimes, Jack Paul
+ * Homework 3
+ * CSE 211
+ * Professor Alomari
  */
 
 import java.lang.Math;
@@ -10,8 +18,9 @@ import java.util.ArrayList;
 public class TurtleSoup {
 
     /**
-     * Draw a square.
+     * TASK #1: drawSquare
      * 
+     * For loop iterates 4 times to draw a side of the square
      * @param turtle the turtle context
      * @param sideLength length of each side
      */
@@ -23,11 +32,10 @@ public class TurtleSoup {
     }
 
     /**
-     * Determine inside angles of a regular polygon.
+     * TASK #2: calculateRegularPolygonAngle()
      * 
-     * There is a simple formula for calculating the inside angles of a polygon;
-     * you should derive it and use it here.
-     * 
+     * Given number of sides is converted to a double in order to determine
+     * inside angles of a regular polygon
      * @param sides number of sides, where sides must be > 2
      * @return angle in degrees, where 0 <= angle < 360
      */
@@ -37,50 +45,41 @@ public class TurtleSoup {
     }
 
     /**
-     * Determine number of sides given the size of interior angles of a regular polygon.
+     * TASK #2: calculatePolygonSidesFromAngle()
      * 
-     * There is a simple formula for this; you should derive it and use it here.
-     * Make sure you *properly round* the answer before you return it (see java.lang.Math).
-     * HINT: it is easier if you think about the exterior angles.
-     * 
+     * Variable sides is create and casted as an integer that determines
+     * the number of sides given the size of interior angles of a regular polygon.
      * @param angle size of interior angles in degrees
      * @return the integer number of sides
      */
     public static int calculatePolygonSidesFromAngle(double angle) {
-    	int sides = 0;   
-        sides = (int)(360.0/(180.0 - angle)+ .001); //rounding error
+    		int sides = 0;   
+        sides = (int) (360.0 / (180.0 - angle) + .001); //rounding error
         return sides;
     }
 
     /**
-     * Given the number of sides, draw a regular polygon.
+     * TASK #2: drawRegularPolygon()
      * 
-     * (0,0) is the lower-left corner of the polygon; use only right-hand turns to draw.
-     * 
+     * For loop iterates based on the number of sides the polygon has
+     * to draw a side the polygon
      * @param turtle the turtle context
      * @param sides number of sides of the polygon to draw
      * @param sideLength length of each side
      */
     public static void drawRegularPolygon(Turtle turtle, int sides, int sideLength) {
-    	for(int i = 0; i < sides; i++) {
-        	
-        	turtle.forward(sideLength);
-        	turtle.turn(180-calculateRegularPolygonAngle(sides));
-        	
-        }
+    		for(int i = 0; i < sides; i++) {
+    			turtle.forward(sideLength);
+	        	turtle.turn(180 - calculateRegularPolygonAngle(sides));
+	    }
     }
 
     /**
-     * Given the current direction, current location, and a target location, calculate the heading
-     * towards the target point.
+     * TASK #3: calculateHeadingToPoint()
      * 
-     * The return value is the angle input to turn() that would point the turtle in the direction of
-     * the target point (targetX,targetY), given that the turtle is already at the point
-     * (currentX,currentY) and is facing at angle currentHeading. The angle must be expressed in
-     * degrees, where 0 <= angle < 360. 
-     *
-     * HINT: look at http://en.wikipedia.org/wiki/Atan2 and Java's math libraries
-     * 
+     * Calculates the heading towards the target point using atan2
+     * when given the current direction, current location,
+     * and a target location
      * @param currentHeading current direction as clockwise from north
      * @param currentX currentY current location
      * @param targetX targetY target point
@@ -89,25 +88,21 @@ public class TurtleSoup {
      */
     public static double calculateHeadingToPoint(double currentHeading, int currentX, int currentY,
                                                  int targetX, int targetY) {
-        int resultY = (targetY - currentY);
-        int resultX = (targetX - currentX);
-        double northAngle = Math.atan2(resultX, resultY) * 180 / Math.PI;
+        int resultY = targetY - currentY;
+        int resultX = targetX - currentX;
+        double northAngle = (Math.atan2(resultX, resultY) * 180 / Math.PI);
         double angle = northAngle - currentHeading;
-        if(angle < 0){
+        if(angle < 0) {
             angle += 360;
         }
         return angle;
     }
 
     /**
-     * Given a sequence of points, calculate the heading adjustments needed to get from each point
-     * to the next.
+     * TASK #3: calculateHeadings()
      * 
-     * Assumes that the turtle starts at the first point given, facing up (i.e. 0 degrees).
-     * For each subsequent point, assumes that the turtle is still facing in the direction it was
-     * facing when it moved to the previous point.
-     * You should use calculateHeadingToPoint() to implement this function.
-     * 
+     * For loop iterates through each list to assign a value to a parameter of the
+     * calculateHeadingToPoint() method and updates the array
      * @param xCoords list of x-coordinates (must be same length as yCoords)
      * @param yCoords list of y-coordinates (must be same length as xCoords)
      * @return list of heading adjustments between points, of size (# of points) - 1.
@@ -125,15 +120,14 @@ public class TurtleSoup {
     }
 
     /**
-     * Draw your personal, custom art.
+     * TASK #4: drawPersonalArt()
      * 
-     * Many interesting images can be drawn using the simple implementation of a turtle.  For this
-     * function, draw something interesting; the complexity can be as little or as much as you want.
-     * We'll be peer-voting on the different images, and the highest-rated one will win a prize. 
-     * 
+     * Four different for loops are used to draw 4 star figured-shapes
+     * that were created using a series of forward() and turn() statements
      * @param turtle the turtle context
      */
     public static void drawPersonalArt(Turtle turtle) {
+    		// Draws blue star
         turtle.color(PenColor.BLUE);
         for(int i = 0; i < 20; i++) {
             turtle.forward(20);
@@ -143,6 +137,8 @@ public class TurtleSoup {
             turtle.forward(100);
             turtle.turn(30);
         }
+        
+        // Draws orange star
         turtle.color(PenColor.ORANGE);
         turtle.forward(-200);
         for(int i = 0; i < 20; i++) {
@@ -153,6 +149,8 @@ public class TurtleSoup {
             turtle.forward(50);
             turtle.turn(30);
         }
+        
+        // Draws red star
         turtle.color(PenColor.RED);
         turtle.turn(135);
         turtle.forward(100);
@@ -164,6 +162,8 @@ public class TurtleSoup {
             turtle.forward(25);
             turtle.turn(30);
         }
+        
+        // Draws pink star
         turtle.color(PenColor.PINK);
         turtle.turn(-150);
         turtle.forward(150);
@@ -185,10 +185,17 @@ public class TurtleSoup {
     public static void main(String args[]) {
         DrawableTurtle turtle = new DrawableTurtle();
 
-        //drawSquare(turtle, 40);
+        // TASK #1
+        drawSquare(turtle, 80);
+        
+        // TASK #2
+        drawRegularPolygon(turtle, 5, 80);
 
+        // TASK #4
         drawPersonalArt(turtle);
 
+        
+        
         // draw the window
         turtle.draw();
     }
