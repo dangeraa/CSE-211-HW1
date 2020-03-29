@@ -1,19 +1,25 @@
+package turtle;
+
 /* Copyright (c) 2007-2014 MIT 6.005 course staff, all rights reserved.
  * Redistribution of original or derived work requires permission of course staff.
  */
-package turtle;
+
+/*
+ * Abby Danger, Scott Cogan, Andrew Grimes, Jack Paul
+ * Homework 3
+ * CSE 211
+ * Professor Alomari
+ */
 
 import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.Test;
 
 public class TurtleSoupTest {
 
     /**
-     * Tests calculateRegularPolygonAngle.
+     * TASK #2: All tests for calculateRegularPolygonAngle() pass successfully
      */
     @Test
     public void calculateRegularPolygonAngleTest() {
@@ -23,7 +29,7 @@ public class TurtleSoupTest {
     }
 
     /**
-     * Tests calculatePolygonSidesFromAngle.
+     * TASK #2: All tests for calculatePolygonSidesFromAngleTest() pass successfully
      */
     @Test
     public void calculatePolygonSidesFromAngleTest() {
@@ -34,7 +40,7 @@ public class TurtleSoupTest {
     }
 
     /**
-     * Tests calculateHeadingToPoint.
+     * TASK #3: All tests for calculateHeadingToPoint() pass successfully
      */
     @Test
     public void calculateHeadingToPointTest() {
@@ -44,7 +50,7 @@ public class TurtleSoupTest {
     }
 
     /**
-     * Tests calculateHeadings.
+     * TASK #3: All tests for calculateHeadingsTest() pass successfully
      */
     @Test
     public void calculateHeadingsTest() {
